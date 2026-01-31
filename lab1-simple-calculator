@@ -1,0 +1,56 @@
+import java.util.Scanner;
+public class SimpleCalculator {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        double result = 0;
+        double number;
+        String operator = "";
+
+        System.out.println("Simple calculator");
+        System.out.println("Enter numbers and operators (+,-,*,/,=)");
+        System.out.println("Type 'exit' to quit");
+
+        while(true){
+            System.out.print("Input:");
+            String input = scanner.nextLine();
+
+            if (input.equalsIgnoreCase("exit")){
+                System.out.println("Goodbye");
+                break;
+            }
+            if (input.equals("+") || input.equals("-") ||
+                input.equals("*") || input.equals("/") ||
+                input.equals("=")){
+                operator = input;
+            }
+            else{
+                try{
+                    number = Double.parseDouble(input);
+                    if(operator.equals("") || operator.equals("=")){
+                        result = number;
+                    }
+                    else if (operator.equals("+")){
+                        result = result + number;
+                    }
+                    else if (operator.equals("-")){
+                        result = result - number;
+                    }
+                    else if (operator.equals("*")){
+                        result = result * number;
+                    }
+                    else if (operator.equals("/")){
+                        if(number==0){
+                            System.out.println("Cannot divide by zero");
+                            continue;
+                        }
+                        result = result / number;
+                    }
+                    System.out.println("Screen:" + result);
+                } catch (Exception e) {
+                    System.out.println("Invalid input");
+                }
+            }
+        }
+        scanner.close();
+    }
+}
